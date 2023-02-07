@@ -1,0 +1,32 @@
+1a)
+
+#!/bin/bash
+
+function file_type {
+  for item in "$@"
+  do
+    if [ -f "$item" ]; then
+      echo "$item is a regular file"
+    elif [ -d "$item" ]; then
+      echo "$item is a directory"
+    else
+      echo "$item is another type of file"
+    fi
+    ls -l "$item"
+  done
+}
+
+function file_count {
+  local count=0
+  for item in "$@"
+  do
+    if [ -f "$item" ]; then
+      count=$((count + 1))
+    fi
+  done
+  echo "Number of regular files: $count"
+}
+
+
+file_type "$@"
+file_count "$@"
